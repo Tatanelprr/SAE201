@@ -93,7 +93,7 @@ public class Plateau {
 		int i;
 		int j = 0;
 
-		if ( this.nbPiece < 1)
+		if ( this.nbPiece > 1)
 		{
 			this.score += this.nbPiece * this.nbPiece;
 		}
