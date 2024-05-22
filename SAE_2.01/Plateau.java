@@ -9,7 +9,7 @@ public class Plateau {
 
 	private final int NB_COL_MAX = 5;
 	private final int NB_LIG_MAX = 3;
-	private List<List<Epice>> plateau;
+	private ArrayList<ArrayList<Epice>> plateau;
 
 	private int score;
 	private String detailScore;
@@ -19,7 +19,7 @@ public class Plateau {
 		this.plateau = new ArrayList<>(NB_LIG_MAX);
         for (int i = 0; i < NB_LIG_MAX; i++) 
 		{
-            List<Epice> ligne = new ArrayList<>(NB_COL_MAX);
+            ArrayList<Epice> ligne = new ArrayList<>(NB_COL_MAX);
             for (int j = 0; j < NB_COL_MAX; j++) 
 			{
                 ligne.add(null);
@@ -33,6 +33,7 @@ public class Plateau {
 
 	public int getScore()
 	{
+		this.score();
 		return this.score;
 	}
 
@@ -79,6 +80,7 @@ public class Plateau {
 					if ( plateau.get(i).get(j) == epice && plateau.get(i - 1).get(j) == null)
 					{
 						plateau.get(i - 1).set(j, epice);
+						this.triColonne((i - 1), j);
 						return true;
 					}
 				}
@@ -128,31 +130,30 @@ public class Plateau {
 			}
         }
 
-			for (j = 0; j < NB_COL_MAX; j++)
+		for (j = 0; j < NB_COL_MAX; j++)
+		{
+			int casesRemplies = 0;
+			for (i = 0; i < NB_LIG_MAX; i++)
 			{
-				int casesRemplies = 0;
-
-				for (i = 0; i < NB_LIG_MAX; i++)
+				if (plateau.get(i).get(j) != null)
 				{
-					if (plateau.get(i).get(j) != null)
-					{
-						casesRemplies++;
-					}
-				}
-				switch (casesRemplies) {
-					case 0:
-						this.score += 0;
-					case 1:
-						this.score += 0;
-					case 2:
-						this.score += 2;
-					case 3:
-						this.score += 10;
-					default:
-						this.score += 0;
-						break;
+					casesRemplies++;
 				}
 			}
+			switch (casesRemplies) {
+				case 0:
+					this.score += 0;
+				case 1:
+					this.score += 0;
+				case 2:
+					this.score += 2;
+				case 3:
+					this.score += 10;
+				default:
+					this.score += 0;
+					break;
+			}
+		}
 	}
 
 	public String toString() {
@@ -193,8 +194,16 @@ public class Plateau {
 	}
 
 
-	public void triColonne()
+	public void triColonne(int lig, int col)
 	{
+		ArrayList<Epice> temp;
 
+		while (plateau.get(col).size() > plateau.get(col - 1).size())
+		{
+			temp = plateau.get(col);
+			plateau.set(col, plateau.get(col - 1));
+			plateau.set(col - 1, temp);
+			col--;
+		}
 	}
 }

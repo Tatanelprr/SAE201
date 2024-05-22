@@ -37,7 +37,5 @@ public class IHMCUI {
 
         System.out.println(plateau.getNbPiece() + " pièces");
 
-
-
     }
 }
