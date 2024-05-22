@@ -117,15 +117,19 @@ public class Plateau {
 				case 0:
 					this.score += 0;
 					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 0 + "  pt\n	";
+					break;
 				case 1:
 					this.score += 0;
 					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 0 + "  pt\n	";
+					break;
 				case 2:
 					this.score += 2;
 					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 2 + "  pt\n	";
+					break;
 				case 3:
 					this.score += 10;
 					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 10 + " pt\n	";
+					break;
 				default:
 					this.score += 0;
 					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 0 + "  pt\n	";
@@ -148,24 +152,30 @@ public class Plateau {
 				case 0:
 					this.score += 0;
 					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 0 + "  pt\n	";
+					break;
 				case 1:
 					this.score += 0;
 					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 0 + "  pt\n	";
+					break;
 				case 2:
 					this.score += 2;
 					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 2 + "  pt\n	";
+					break;
 				case 3:
 					this.score += 5;
 					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 5 + "  pt\n	";
+					break;
 				case 4:
 					this.score += 9;
 					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 9 + "  pt\n	";
+					break;
 				case 5:
 					this.score += 14;
-					this.detailScore += (String.format("%-15s", "Ligne " + i) + ": ") + 14 + " pt\n	";
+					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 14 + " pt\n	";
+					break;
 				default:
 					this.score += 0;
-					this.detailScore += (String.format("%-15s", "Ligne " + i) + ": ") + 0 + "  pt\n	";
+					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 0 + "  pt\n	";
 					break;
 			}
         }
