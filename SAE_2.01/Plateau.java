@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class Plateau {
@@ -9,7 +8,7 @@ public class Plateau {
 
 	private final int NB_COL_MAX = 5;
 	private final int NB_LIG_MAX = 3;
-	private ArrayList<ArrayList<Epice>> plateau;
+	private List<List<Epice>> plateau;
 
 	private int score;
 	private String detailScore;
@@ -80,7 +79,7 @@ public class Plateau {
 					if ( plateau.get(i).get(j) == epice && plateau.get(i - 1).get(j) == null)
 					{
 						plateau.get(i - 1).set(j, epice);
-						this.triColonne((i - 1), j);
+						this.triColonnes(i - 1, j);
 						return true;
 					}
 				}
@@ -95,40 +94,14 @@ public class Plateau {
 		int i;
 		int j = 0;
 
+		this.detailScore = "Detail :\n	";
+		this.detailScore += ( String.format("%-15s", "Pieces ") + ": ");
+
 		if ( this.nbPiece > 1)
 		{
 			this.score += this.nbPiece * this.nbPiece;
+			this.detailScore += (this.nbPiece * this.nbPiece) + " pt\n	";
 		}
-
-		for (i = 0; i < NB_LIG_MAX; i++) 
-		{
-            int casesRemplies = 0;
-
-            for (j = 0; j < NB_COL_MAX; j++) 
-			{
-                if (plateau.get(i).get(j) != null) 
-				{
-                    casesRemplies++;
-                }
-            }
-            switch (casesRemplies) {
-				case 0:
-					this.score += 0;
-				case 1:
-					this.score += 0;
-				case 2:
-					this.score += 2;
-				case 3:
-					this.score += 5;
-				case 4:
-					this.score += 9;
-				case 5:
-					this.score += 14;
-				default:
-					this.score += 0;
-					break;
-			}
-        }
 
 		for (j = 0; j < NB_COL_MAX; j++)
 		{
@@ -143,17 +116,59 @@ public class Plateau {
 			switch (casesRemplies) {
 				case 0:
 					this.score += 0;
+					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 0 + "  pt\n	";
 				case 1:
 					this.score += 0;
+					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 0 + "  pt\n	";
 				case 2:
 					this.score += 2;
+					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 2 + "  pt\n	";
 				case 3:
 					this.score += 10;
+					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 10 + " pt\n	";
 				default:
 					this.score += 0;
+					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 0 + "  pt\n	";
 					break;
 			}
 		}
+		
+		for (i = 0; i < NB_LIG_MAX; i++) 
+		{
+            int casesRemplies = 0;
+
+            for (j = 0; j < NB_COL_MAX; j++) 
+			{
+                if (plateau.get(i).get(j) != null) 
+				{
+                    casesRemplies++;
+                }
+            }
+            switch (casesRemplies) {
+				case 0:
+					this.score += 0;
+					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 0 + "  pt\n	";
+				case 1:
+					this.score += 0;
+					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 0 + "  pt\n	";
+				case 2:
+					this.score += 2;
+					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 2 + "  pt\n	";
+				case 3:
+					this.score += 5;
+					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 5 + "  pt\n	";
+				case 4:
+					this.score += 9;
+					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 9 + "  pt\n	";
+				case 5:
+					this.score += 14;
+					this.detailScore += (String.format("%-15s", "Ligne " + i) + ": ") + 14 + " pt\n	";
+				default:
+					this.score += 0;
+					this.detailScore += (String.format("%-15s", "Ligne " + i) + ": ") + 0 + "  pt\n	";
+					break;
+			}
+        }
 	}
 
 	public String toString() {
@@ -161,30 +176,30 @@ public class Plateau {
 		String sep = "+-----";
 	
 		sRet = "";
-		for (int j = 0; j < NB_LIG_MAX; j++) 
+		for (int i = 0; i < NB_LIG_MAX; i++) 
 		{
-			for (int i = 0; i < NB_COL_MAX; i++) 
+			for (int j = 0; j < NB_COL_MAX; j++) 
 			{
 				sRet += sep;
 			}
 			sRet += "+ \n";
-			for (int i = 0; i < NB_COL_MAX; i++) 
+			for (int j = 0; j < NB_COL_MAX; j++) 
 			{
 				sRet += "| ";
-				if (plateau.get(j).get(i) == null) 
+				if (plateau.get(i).get(j) == null) 
 				{ 
 					sRet += "    ";
 				} 
 				else 
 				{
-				sRet += plateau.get(j).get(i).getLibCourt(); 
+				sRet += plateau.get(i).get(j).getLibCourt(); 
 				sRet += " ";
 				}
 			}
 			sRet += "|\n";
 		}
 
-		for (int i = 0; i < NB_COL_MAX; i++) 
+		for (int j = 0; j < NB_COL_MAX; j++) 
 		{
 			sRet += sep;
 		}
@@ -194,16 +209,21 @@ public class Plateau {
 	}
 
 
-	public void triColonne(int lig, int col)
+	public void triColonnes(int i, int j)
 	{
-		ArrayList<Epice> temp;
-
-		while (plateau.get(col).size() > plateau.get(col - 1).size() && col <= 1)
+		if (j > 0 && i >= 0)
 		{
-			temp = plateau.get(col);
-			plateau.set(col, plateau.get(col - 1));
-			plateau.set(col - 1, temp);
-			col--;
+			while (j > 0 && plateau.get(i).get(j - 1) == null)
+			{
+				for (int i2 = 0; i2 < NB_LIG_MAX; i2++) 
+				{
+					Epice tmp = this.plateau.get(i2).get(j - 1);
+					this.plateau.get(i2).set(j - 1, this.plateau.get(i2).get(j));
+					this.plateau.get(i2).set(j,   tmp);	
+				}
+				j--;
+			}
 		}
 	}
+
 }

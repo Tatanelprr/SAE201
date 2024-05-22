@@ -32,10 +32,14 @@ public class IHMCUI {
             System.out.println(sRet);
         }
 
-        System.out.println("\n\nEtat final du Plateau");
+        System.out.println("\n\nEtat final du Plateau\n");
         System.out.println(plateau.toString() + "\n");
 
-        System.out.println(plateau.getNbPiece() + " pièces");
+        System.out.println(plateau.getNbPiece() + " pièces\n");
+
+        System.out.println("Score : " + plateau.getScore());
+
+        System.out.println(plateau.getDetailScore());
 
     }
 }
