@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Plateau {
@@ -75,14 +76,13 @@ public class Plateau {
 			{
 				for (int j = 0; j < NB_COL_MAX; j++) 
 				{
-					if ( plateau.get(i).get(j) == epice)
+					if ( plateau.get(i).get(j) == epice && plateau.get(i - 1).get(j) == null)
 					{
 						plateau.get(i - 1).set(j, epice);
 						return true;
 					}
 				}
 			}
-
 			return false;
 		}
 		return false;
@@ -190,5 +190,11 @@ public class Plateau {
 		sRet += "+";
 	
 		return sRet;
+	}
+
+
+	public void triColonne()
+	{
+
 	}
 }
