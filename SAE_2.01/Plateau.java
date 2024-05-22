@@ -198,7 +198,7 @@ public class Plateau {
 	{
 		ArrayList<Epice> temp;
 
-		while (plateau.get(col).size() > plateau.get(col - 1).size())
+		while (plateau.get(col).size() > plateau.get(col - 1).size() && col <= 1)
 		{
 			temp = plateau.get(col);
 			plateau.set(col, plateau.get(col - 1));
