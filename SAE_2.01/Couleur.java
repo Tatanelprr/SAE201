@@ -55,7 +55,7 @@ public enum Couleur {
 			}
 			case BRUN ->
 			{
-				sRet = "cannelle.png";
+				sRet = "canelle.png";
 			}
 			case VERT ->
 			{

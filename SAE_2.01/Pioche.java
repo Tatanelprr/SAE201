@@ -38,7 +38,7 @@ public class Pioche
 		this.tabJeton.add(new Jeton(Epice.SAFRAN)); 
 		this.tabJeton.add(new Jeton(Epice.CANNELLE));
 
-		// Collections.shuffle(tabJeton); // Ici fonction permettant de mélanger la pioche (fonctionne)
+		//Collections.shuffle(tabJeton); // Ici fonction permettant de mélanger la pioche (fonctionne)
 	}
 
 	public int getTaille()
