@@ -19,9 +19,9 @@ public enum Epice implements IRessource
 	public String getLibCourt()
 	{
 		String lib;
-		String nom = this.name();
+		String nom = this.name(); 		//Récupère le nom de l'épice
 
-		lib = nom.substring( 0, 3);
+		lib = nom.substring( 0, 3);		//Récupère les 3 premiers carractère du nom
 
 		return lib;
 	}

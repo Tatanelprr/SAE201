@@ -76,18 +76,7 @@ public class Plateau {
 		else if (r.getType() instanceof Epice)
 		{
 			Epice epice = (Epice) r.getType();
-			int i = 2;
-
-			for (int j = 0; j < NB_COL_MAX; j++)
-			{
-				if ( plateau.get(i).get(j) == null )
-				{
-					plateau.get(i).set(j, epice);
-					return true;
-				}
-			}
-
-			for (i = 1; i < (NB_LIG_MAX); i++) 
+			for (int i = 1; i < (NB_LIG_MAX); i++) 
 			{
 				for (int j = 0; j < NB_COL_MAX; j++) 
 				{
@@ -99,6 +88,18 @@ public class Plateau {
 					}
 				}
 			}
+			
+			int i = 2;
+
+			for (int j = 0; j < NB_COL_MAX; j++)
+			{
+				if ( plateau.get(i).get(j) == null )
+				{
+					plateau.get(i).set(j, epice);
+					return true;
+				}
+			}
+
 			return false;
 		}
 		return false;

@@ -49,6 +49,6 @@ public class IHMCUI {
 
     public static void main(String[] args) 
     {
-        IHMCUI ihmcui = new IHMCUI();
+        IHMCUI i = new IHMCUI();
     }
 }

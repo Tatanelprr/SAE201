@@ -12,17 +12,14 @@ public class Pioche
 
 	public Jeton tirerJeton()
 	{
-		if(this.tabJeton.get(0) == null)
-		{
-			return null;
-		}
-		else
+		if(this.tabJeton.get(0) != null)
 		{
 			return this.tabJeton.remove(0);
 		}
+		return null;
 	}
 
-	private void initPioche()
+	private void initPioche()	//Initialise la pioche selon l'exemple
 	{
 		this.tabJeton.add(new Jeton(Epice.POIVRE));
 		this.tabJeton.add(new Jeton(Epice.SUMAC));
@@ -40,6 +37,8 @@ public class Pioche
 		this.tabJeton.add(new Jeton(Epice.SAFRAN));
 		this.tabJeton.add(new Jeton(Epice.SAFRAN)); 
 		this.tabJeton.add(new Jeton(Epice.CANNELLE));
+
+		// Collections.shuffle(tabJeton); // Ici fonction permettant de mélanger la pioche (fonctionne)
 	}
 
 	public int getTaille()
