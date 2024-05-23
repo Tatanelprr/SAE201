@@ -16,10 +16,12 @@ public class Plateau {
 	public Plateau()
 	{
 		this.plateau = new ArrayList<>(NB_LIG_MAX);
-        for (int i = 0; i < NB_LIG_MAX; i++) 
+        
+		for (int i = 0; i < NB_LIG_MAX; i++) 
 		{
-            ArrayList<Epice> ligne = new ArrayList<>(NB_COL_MAX);
-            for (int j = 0; j < NB_COL_MAX; j++) 
+            ArrayList<Epice> ligne = new ArrayList<>(NB_COL_MAX);								//Le plateau est initialisé sous la forme d'une double liste
+            
+			for (int j = 0; j < NB_COL_MAX; j++) 
 			{
                 ligne.add(null);
             }
@@ -63,26 +65,30 @@ public class Plateau {
 
 	public boolean ajouterRessource( Jeton r )
 	{
-		if (r.getType() instanceof Piece)
+		if (r.getType() instanceof Piece) 														//Regardes si le jeton est une pièce
 		{
-			Piece piece = (Piece) r.getType();
-			if ( (piece.getValeur() + this.nbPiece) <= this.NB_PIECE_MAX)
+			Piece piece = (Piece) r.getType();													//Caste le jeton en pièce
+			
+			if ( (piece.getValeur() + this.nbPiece) <= this.NB_PIECE_MAX)						//Vérifie à ne pas excéder le nombre de pièces max
 			{
 				this.nbPiece += piece.getValeur();
 				return true;
 			}
 			return false;
 		}
-		else if (r.getType() instanceof Epice)
+
+		else if (r.getType() instanceof Epice)													//Regardes si le jeton est une épice
 		{
-			Epice epice = (Epice) r.getType();
+			Epice epice = (Epice) r.getType();													//Caste le jeton en pièce
+			
 			for (int i = 1; i < (NB_LIG_MAX); i++) 
 			{
-				for (int j = 0; j < NB_COL_MAX; j++) 
+				for (int j = 0; j < NB_COL_MAX; j++) 		
 				{
-					if ( plateau.get(i).get(j) == epice && plateau.get(i - 1).get(j) == null)
+					if ( plateau.get(i).get(j) == epice && plateau.get(i - 1).get(j) == null)	//Vérifie si l'épice est déjà présente ou non 
+																								//puis vérifies que la case du dessus soit libre
 					{
-						plateau.get(i - 1).set(j, epice);
+						plateau.get(i - 1).set(j, epice);										//Effectues l'échange
 						this.triColonnes(i - 1, j);
 						return true;
 					}
@@ -91,7 +97,8 @@ public class Plateau {
 			
 			int i = 2;
 
-			for (int j = 0; j < NB_COL_MAX; j++)
+			for (int j = 0; j < NB_COL_MAX; j++)												//Si la première condition n' a pas pu placer l'épice,
+																								// celle ci vérifies si il reste de la place en bas du tableau
 			{
 				if ( plateau.get(i).get(j) == null )
 				{
@@ -113,7 +120,7 @@ public class Plateau {
 		this.detailScore = "Detail :\n	";
 		this.detailScore += ( String.format("%-15s", "Pieces ") + ": ");
 
-		if ( this.nbPiece > 1)
+		if ( this.nbPiece > 1)																	//Regardes si il y a plus d'une pièce car 1 pièce = 0 score
 		{
 			this.score += this.nbPiece * this.nbPiece;
 			this.detailScore += (this.nbPiece * this.nbPiece) + " pt\n	";
@@ -122,14 +129,17 @@ public class Plateau {
 		for (j = 0; j < NB_COL_MAX; j++)
 		{
 			int casesRemplies = 0;
+			
 			for (i = 0; i < NB_LIG_MAX; i++)
 			{
 				if (plateau.get(i).get(j) != null)
 				{
-					casesRemplies++;
+					casesRemplies++;															//Compte le nombre de cases remplies par colonnes
 				}
 			}
-			switch (casesRemplies) {
+
+			switch (casesRemplies) 
+			{
 				case 0:
 					this.score += 0;
 					this.detailScore += (String.format("%-15s", "Colonne " + (j + 1)) + ": ") + 0 + "  pt\n	";
@@ -161,10 +171,11 @@ public class Plateau {
 			{
                 if (plateau.get(i).get(j) != null) 
 				{
-                    casesRemplies++;
+                    casesRemplies++;															//Compte le nombre de cases remplies par lignes
                 }
             }
-            switch (casesRemplies) {
+            switch (casesRemplies) 
+			{
 				case 0:
 					this.score += 0;
 					this.detailScore += (String.format("%-15s", "Ligne " + (i + 1)) + ": ") + 0 + "  pt\n	";
@@ -197,7 +208,8 @@ public class Plateau {
         }
 	}
 
-	public String toString() {
+	public String toString() 
+	{
 		String sRet;
 		String sep = "+-----";
 	
@@ -237,13 +249,17 @@ public class Plateau {
 
 	public void triColonnes(int i, int j)
 	{
-		if (j > 0 && i >= 0)
+		if (j > 0 && i >= 0)																	//Vérifies que i ne soit pas null et que j soit supérieur à 0 car
+																								// utilisation de j - 1 par la suite
 		{
-			while (j > 0 && plateau.get(i).get(j - 1) == null)
+			while (j > 0 && plateau.get(i).get(j - 1) == null)									//Permet de checker chaque si la case qui vient d'être placée est
+																								//plus haute que la case la plus haute de la colonne de gauche
+																								//Permet aussi de vérifier que j reste non nul
 			{
 				for (int i2 = 0; i2 < NB_LIG_MAX; i2++) 
 				{
 					Epice tmp = this.plateau.get(i2).get(j - 1);
+
 					this.plateau.get(i2).set(j - 1, this.plateau.get(i2).get(j));
 					this.plateau.get(i2).set(j,   tmp);	
 				}

@@ -27,7 +27,7 @@ public enum Couleur {
 		return new Color(this.r, this.v, this.b);
 	}
 
-	public String getSymbole()
+	public String getSymbole() // retourne l'image associée à la couleur
 	{
 		String sRet;
 
@@ -73,12 +73,12 @@ public enum Couleur {
 		return sRet;
 	}
 	
-	public static int getNbCouleur()
+	public static int getNbCouleur() //retourne la taille de la liste de couleurs
 	{
 		return Couleur.values().length;
 	}
 
-	public static Couleur valueOf( int ordinal)
+	public static Couleur valueOf( int ordinal) //Retourne la couleur correspondant à l'indice ordinal dans la liste de couleurs
 	{
 		if ( ordinal >= 0 && ordinal <= Couleur.values().length)
 		{
