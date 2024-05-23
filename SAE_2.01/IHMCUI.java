@@ -5,6 +5,8 @@ public class IHMCUI {
         
         Plateau plateau = new Plateau();
         Pioche pioche = new Pioche();
+
+        int taille = pioche.getTaille();
         
         // Affiche l'état initial du plateau
        
@@ -15,7 +17,7 @@ public class IHMCUI {
 
         System.out.println("Ajout des ressources à partir des jetons de la pioche\n");
 
-        for (int i = 0; i <= 15; i++)
+        for (int i = 0; i < taille; i++)
         {
             String sRet = "";
             Jeton j = pioche.tirerJeton();
@@ -43,5 +45,10 @@ public class IHMCUI {
 
         System.out.println(plateau.getDetailScore());
 
+    }
+
+    public static void main(String[] args) 
+    {
+        IHMCUI ihmcui = new IHMCUI();
     }
 }

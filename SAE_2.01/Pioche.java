@@ -39,7 +39,11 @@ public class Pioche
 		this.tabJeton.add(new Jeton(Epice.SAFRAN));
 		this.tabJeton.add(new Jeton(Epice.SAFRAN));
 		this.tabJeton.add(new Jeton(Epice.SAFRAN)); 
-		this.tabJeton.add(new Jeton(Epice.CANNELLE)); 
-		this.tabJeton.add(null);
+		this.tabJeton.add(new Jeton(Epice.CANNELLE));
+	}
+
+	public int getTaille()
+	{
+		return this.tabJeton.size();
 	}
 }

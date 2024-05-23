@@ -7,6 +7,7 @@ public class FramePlateau
     {
         Plateau plateau = new Plateau();
         Pioche pioche = new Pioche();
+        int taille = pioche.getTaille();
 
         JFrame frame = new JFrame("La route des épices");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -15,10 +16,11 @@ public class FramePlateau
         ImageIcon imageIcon = new ImageIcon("images/plateau.png");
         Image image = imageIcon.getImage();
 
-        for (int i = 0; i <= 15; i++) 
+        for (int i = 0; i < taille; i++) 
         {
             Jeton j = pioche.tirerJeton();
-            if (j != null) {
+            if (j != null) 
+            {
                 plateau.ajouterRessource(j);
             }
         }
