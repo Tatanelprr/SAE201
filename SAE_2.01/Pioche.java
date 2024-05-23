@@ -40,5 +40,6 @@ public class Pioche
 		this.tabJeton.add(new Jeton(Epice.SAFRAN));
 		this.tabJeton.add(new Jeton(Epice.SAFRAN)); 
 		this.tabJeton.add(new Jeton(Epice.CANNELLE)); 
+		this.tabJeton.add(null);
 	}
 }

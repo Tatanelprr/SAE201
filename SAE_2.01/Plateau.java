@@ -36,6 +36,21 @@ public class Plateau {
 		return this.score;
 	}
 
+	public Epice getEpice(int i, int j)
+	{
+		return this.plateau.get(i).get(j);
+	}
+
+	public int getNB_LIG_MAX()
+	{
+		return this.NB_LIG_MAX;
+	}
+
+	public int getNB_COL_MAX()
+	{
+		return this.NB_COL_MAX;
+	}
+
 	public int getNbPiece()
 	{
 		return this.nbPiece;

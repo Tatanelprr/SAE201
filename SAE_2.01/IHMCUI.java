@@ -1,7 +1,7 @@
 public class IHMCUI {
-    public static void main(String[] args) 
+    public IHMCUI() 
     {
-        // Crée une instance de Plateau
+        // Crée une instance de Plateau et de Pioche
         
         Plateau plateau = new Plateau();
         Pioche pioche = new Pioche();
@@ -17,18 +17,20 @@ public class IHMCUI {
 
         for (int i = 0; i <= 15; i++)
         {
-            String sRet;
+            String sRet = "";
             Jeton j = pioche.tirerJeton();
-
-            sRet = j.toString();
-            if (plateau.ajouterRessource(j))
-		    {
-			    sRet += "true";
-		    }
-		    else
-		    {
-			    sRet += "false";
-		    }
+            if (j != null)
+            {
+                sRet = j.toString();
+                if (plateau.ajouterRessource(j))
+                {
+                    sRet += "true";
+                }
+                else
+                {
+                    sRet += "false";
+                }
+            }
             System.out.println(sRet);
         }
 
